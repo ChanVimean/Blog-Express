@@ -14,13 +14,24 @@ app.use(express.urlencoded({ extended: true }));
 pool.getConnection((err, connection) => {
     if (err) return console.log("Connection failed\n");
 
-    console.log("Connection success");
+    console.log("Connection success\n");
     connection.release();
 });
 
 
 // Routes Middleware
 
+
+
+// Testing route
+app.get('/', (req, res) => {
+    try {
+        res.send('Server route is working');
+    } catch (error) {
+        res.send("Server route is not working");
+        console.log(error);
+    }
+});
 
 
 // Run Server

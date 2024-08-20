@@ -7,7 +7,7 @@ const userRouter = Router();
 
 userRouter.use(validateToken);
 
-// Authenticated user
+// Get authenticated user info
 userRouter.get('/getAuthUser', getAuthUserController);
 
 

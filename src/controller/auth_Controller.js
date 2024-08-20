@@ -6,8 +6,8 @@ import 'dotenv/config';
 
 // Register
 export const userRegisterController = async (req, res) => {
-    const image = req.file;
     const { username , email, password } = req.body;
+    const image = req.file;
     
     // Encrypt password
     const randomSalt = await bcrypt.genSalt(parseInt(process.env.ROUND_NUMBER));

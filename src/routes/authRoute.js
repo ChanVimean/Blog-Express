@@ -1,11 +1,11 @@
-import { Router } from "express";
+import { Router } from 'express';
 import upload from '../utils/image_handler.js';
-import { userRegisterController } from '../controller/auth_Controller.js'
+import { userRegisterController, userLoginController } from '../controller/auth_Controller.js'
 
 const authRouter = Router();
 
 authRouter.post('/register', upload.single('file'), userRegisterController);
-// authRouter.post('/login' );
+authRouter.post('/login', userLoginController);
 
 
 export default authRouter;

@@ -38,4 +38,4 @@ app.get('/', (req, res) => {
 
 
 // Run Server
-app.listen(port, () => console.log(`Server running http://localhost:${port}`));
+app.listen(port, () => console.log(`Server running on http://localhost:${port}`));

@@ -33,3 +33,29 @@ export const userRegisterController = async (req, res) => {
 }
 
 // Login
+export const userLoginController = (req, res) => {
+    const { email, password } = req.body;
+
+    if(email && password){
+        const sql = `SELECT * FROM table_user WHERE email = ?`;
+        pool.query(sql, email, (err, row) => {
+            if (err) return res.status(500).json({message: "Failed to login"});
+            if(row){
+                const isMatch = isPasswordValid(password, row[0].password);
+                if(isMatch){
+                    const username = row[0].username;
+                    const token = generateToken({ username });
+                    res.status(200).json({
+                        message: "Login successful",
+                        token
+                    });
+                }
+            }
+        });
+    }else{
+        return res.status(401).json({
+            message: "Please provide information for all required fields"
+        });
+    }
+   
+}

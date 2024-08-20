@@ -12,8 +12,6 @@ const storage = multer.diskStorage({
         callback(null, Date.now() + '-' + file.originalname);
     }
 
-    // File filter: extension (jpg,, png)
-    // filesize: 10MB
 });
 
 const upload = multer({ storage });

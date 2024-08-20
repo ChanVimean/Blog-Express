@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 
-export const validateToken = (req, res, next) => {
+const validateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
 
     if(!authHeader) return res.status(401).json({message: "Unauthorized"});
@@ -16,3 +16,5 @@ export const validateToken = (req, res, next) => {
         next();
     });
 }
+
+export default validateToken;

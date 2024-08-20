@@ -4,6 +4,7 @@ import pool from './src/database/db_connect.js';
 
 // import Routes
 import authRouter from './src/routes/authRoute.js'
+import userRouter from './src/routes/userRoute.js';
 
 const app = express();
 const port = process.env.PORT || 8070;
@@ -24,7 +25,7 @@ pool.getConnection((err, connection) => {
 
 // Routes Middleware
 app.use('/blog/auth/', authRouter);
-
+app.use('/blog/user/', userRouter);
 
 // Testing route
 app.get('/', (req, res) => {

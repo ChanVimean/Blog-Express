@@ -6,7 +6,7 @@ const generateToken = username => {
         username,
         process.env.JWT_SECRET,
         { 
-            expiresIn: process.env.JWT_EXPIRATION || 10 * 60 * 1000
+            expiresIn: parseInt(process.env.JWT_EXPIRATION)
         }
     );
 }

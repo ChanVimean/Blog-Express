@@ -32,10 +32,10 @@ app.use('/blog/info', blogRouter);
 // Testing route
 app.get('/', (req, res) => {
     try {
-        res.send('Server route is working');
+        res.send('Server Route is working');
     } catch (error) {
-        res.send("Server route is not working");
         console.log(error);
+        res.send("Server Route is not working");
     }
 });
 

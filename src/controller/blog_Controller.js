@@ -1,7 +1,7 @@
 import pool from '../database/db_connect.js';
 
 // Get/Show all blog
-export const GetAllBlogController = (req, res) => {
+export const getAllBlogController = (req, res) => {
     const authenticatedUsername = req.user.username;
     const sql = `SELECT b.* FROM table_user u INNER JOIN table_blog b ON u.id = b.user_id WHERE u.username = ?`;
 
@@ -22,8 +22,8 @@ export const GetAllBlogController = (req, res) => {
 // Post/Create a new blog
 export const createBlogController = (req, res) => {
     const authenticatedUsername = req.user.username;
-    const { title , category , type , description} = req.body;
     const image = req.file;
+    const { title , category , type , description} = req.body;
 
     const sql = `SELECT id FROM table_user WHERE username = ?`;
 
@@ -34,12 +34,8 @@ export const createBlogController = (req, res) => {
             message: "Data retrieval error. We're working on it."
         });
 
-        // Error Handler: Check if the user was found
-        if (row.length === 0) {
-            return res.status(401).json({
-                message: "User not authorized to create a blog."
-            });
-        }
+        console.log("Error: ", err);
+        console.log(image);
 
         // Error Handler: Check for missing fields
         if (!title && !category && !type && !description && !image){
@@ -70,7 +66,7 @@ export const createBlogController = (req, res) => {
     });
 }
 
-// Put/Update selected id
+// Put/Edit selected id
 export const editBlogController = (req, res) => {
     const authenticatedUsername = req.user.username;
     const { id } = req.params;

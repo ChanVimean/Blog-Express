@@ -25,9 +25,9 @@ pool.getConnection((err, connection) => {
 
 
 // Routes Middleware
-app.use('/blog/auth/', authRouter);
-app.use('/blog/user/', userRouter);
-app.use('/blog/info', blogRouter);
+app.use('/api/auth/', authRouter);
+app.use('/api/user/', userRouter);
+app.use('/api/blog', blogRouter);
 
 // Testing route
 app.get('/', (req, res) => {

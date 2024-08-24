@@ -4,7 +4,7 @@ import { userRegisterController, userLoginController } from '../controller/auth_
 
 const authRouter = Router();
 
-authRouter.post('/register', upload.single('file'), userRegisterController);
+authRouter.post('/register', upload.single('image'), userRegisterController);
 authRouter.post('/login', userLoginController);
 
 

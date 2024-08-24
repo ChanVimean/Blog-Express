@@ -1,22 +1,16 @@
 import { Router } from "express";
 import { validateToken } from '../utils/jwt_validate.js';
-import { GetAllBlogController, createBlogController,
+import { getAllBlogController, createBlogController,
          editBlogController, deleteBlogController } from '../controller/blog_Controller.js';
+import upload from "../utils/image_handler.js";
 
 const blogRouter = Router();
 
 blogRouter.use(validateToken);
 
-// Get/Show user blog
-blogRouter.get('/getBlog', GetAllBlogController);
-
-// Post/Create a new blog
-blogRouter.post('/createBlog', createBlogController);
-
-// Put/Update existing blog by param(/:id)
-blogRouter.put('/editBlog/:id', editBlogController);
-
-// Delete existing blog
+blogRouter.get('/getBlog', getAllBlogController);
+blogRouter.post('/createBlog', upload.single('image'), createBlogController);
+blogRouter.put('/editBlog/:id', upload.single('image'), editBlogController);
 blogRouter.delete('/deleteBlog/:id', deleteBlogController);
 
 export default blogRouter;

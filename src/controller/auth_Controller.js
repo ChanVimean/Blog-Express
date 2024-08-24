@@ -6,8 +6,8 @@ import 'dotenv/config';
 
 // Register
 export const userRegisterController = async (req, res) => {
-    const { username , email, password } = req.body;
     const image = req.file;
+    const { username , email, password } = req.body;
     
     // Encrypt password
     const randomSalt = await bcrypt.genSalt(parseInt(process.env.ROUND_NUMBER));
@@ -26,9 +26,7 @@ export const userRegisterController = async (req, res) => {
             });
         });
     }else{
-        res.status(403).json({
-            error: "Please provide information for all required fields"
-        });
+        res.status(403).json({ message: "Please provide information for all required fields" });
     }
 }
 
